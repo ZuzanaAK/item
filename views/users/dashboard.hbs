@@ -1,0 +1,13 @@
+ {{#if userInSession}}
+<div>
+  Hello {{userInSession.name}}, welcome to your dashboard page!
+</div>
+
+{{else}}
+
+    <p>Sorry, in order to see the content of this page you have to be signed in!</p>
+    <button><a href="/">Go Back To The Home Page</a></button>
+    <button><a href="/signin">Sign In</a></button>
+    <button><a href="/signup">Register</a></button>
+
+{{/if}}

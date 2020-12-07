@@ -15,13 +15,16 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+// require database configuration
+require('./config/db.config');
+
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Express View engine setup
+
 /*
 app.use(require('node-sass-middleware')({
   src:  path.join(__dirname, 'public'),
@@ -30,20 +33,40 @@ app.use(require('node-sass-middleware')({
 }));
 */     
 
+// Express View engine setup
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+//session
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+ 
+app.use(session({
+    secret: 'NotMyAge',
+    saveUninitialized: false, 
+    resave: false,
+    cookie : {
+        maxAge: 24*60*60*1000 //in milliseconds
+    }, 
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24*60*60 //in seconds = 1day 
+    })
+}));
+
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = '.item - exchange, donate, sell';
 
-
-
-const index = require('./routes/index');
+//routes
+const index = require('./routes/index.routes.js');
 app.use('/', index);
 
+const authRoutes = require('./routes/auth.routes.js');
+app.use('/', authRoutes);
 
 module.exports = app;
