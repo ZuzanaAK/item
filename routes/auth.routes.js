@@ -97,6 +97,8 @@ router.post('/logout', (req, res) => {
   res.redirect('/');
 });
 
+//...................Dashboard...........................// 
+
 router.get("/dashboard", (req,res,next) => {
   console.log(req.session.loggedInUser)
   res.render('users/dashboard', {userInSession: req.session.loggedInUser});
