@@ -7,7 +7,7 @@ const UserModel = require('../models/User.model')
 
 router.get('/signup', (req, res) => {
     
-    res.render('auth/signup.hbs')
+    res.render('auth/signup')
 })
 
 
@@ -15,20 +15,20 @@ router.post('/signup', (req, res) => {
     const {name, email, password} = req.body
 
     if (!name || !email || !password) {
-      res.status(500).render('auth/signup.hbs', {message: 'Please enter all details'})
+      res.status(500).render('auth/signup', {message: 'Please enter all details'})
       return;
     }
 
     let emailReg = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
     if (!emailReg.test(email)) {
-      res.status(500).render('auth/signup.hbs', {message: 'Please enter a valid email'})
+      res.status(500).render('auth/signup', {message: 'Please enter a valid email'})
       return;
     }
   
 
     let passwordReg = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/)
     if (!passwordReg.test(password)) {
-      res.status(500).render('auth/signup.hbs', {message: 'Password must have one lowercase, one uppercase, a number, a special character and must be atleast 8 digits long'})
+      res.status(500).render('auth/signup', {message: 'Password must have one lowercase, one uppercase, a number, a special character and must be atleast 8 digits long'})
       return;
     }
 
@@ -55,7 +55,7 @@ router.post('/signup', (req, res) => {
 
 router.get('/signin', (req, res) => {
   
-  res.render('auth/signin.hbs')
+  res.render('auth/signin')
 })
 
 router.post('/signin', (req, res) => {
@@ -65,7 +65,7 @@ router.post('/signin', (req, res) => {
     .then((userData) => {
           
           if (!userData) {
-            res.status(500).render('auth/signin.hbs', {message: 'User does not exist'}) 
+            res.status(500).render('auth/signin', {message: 'User does not exist'}) 
             return;
           }
 
@@ -78,11 +78,11 @@ router.post('/signin', (req, res) => {
                     res.redirect('/dashboard')
                 }
                 else {
-                   res.status(500).render('auth/signin.hbs', {message: 'Passwords not matching'}) 
+                   res.status(500).render('auth/signin', {message: 'Passwords not matching'}) 
                 }
             })
             .catch(() => {
-              res.status(500).render('auth/signin.hbs', {message: 'Something went wrong. Try again!'}) 
+              res.status(500).render('auth/signin', {message: 'Something went wrong. Try again!'}) 
             })
     })
 
