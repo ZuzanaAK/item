@@ -63,10 +63,14 @@ app.use(session({
 app.locals.title = '.item - exchange, donate, sell';
 
 //routes
-const index = require('./routes/index.routes.js');
+const index = require('./routes/index.routes');
 app.use('/', index);
 
-const authRoutes = require('./routes/auth.routes.js');
+const authRoutes = require('./routes/auth.routes');
 app.use('/', authRoutes);
+
+const itemsRoutes = require('./routes/items.routes');
+app.use('/', itemsRoutes);
+
 
 module.exports = app;

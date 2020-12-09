@@ -1,0 +1,20 @@
+<h2>Edit This Item</h2>
+<h2>{{item}}</h2>
+
+<form action="/{{this._id}}/item-edit" method="post">
+ 
+  <label for="item"><p>Item:</p></label>
+  <input type="text" name="item" id="item-input" value="{{item}}" />
+<br>
+  <label for="category"><p>Category:</p></label>
+  <input type="text" name="category" id="category-input" value="{{category}}" />
+<br>
+  <label for="image"><p>Image:</p></label>
+  <input type="image" name="image" id="image-input" value="{{image}}" />
+<br>
+  <label for="description"><p>Description:</p></label>
+  <input type="text" name="description" id="description-input" value="{{description}}" />
+<br>
+  <button type="submit">Save changes</button>
+
+</form>

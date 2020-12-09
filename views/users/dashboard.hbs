@@ -1,11 +1,38 @@
  {{#if userInSession}}
 <div>
   Hello {{userInSession.name}}, welcome to your dashboard page!
-</div>
+
+  <h2>Your Items</h2>
+   <!--
+     {{#each items}}
+
+        <h3>{{this.item}}</h3>
+
+        <button><a href="/{{ this._id }}">Show details</a></button>
+
+        <form action="/{{ this._id }}/delete" method="POST">
+
+            <button type="submit">Delete Item</button>
+    
+        </form>
+ 
+    
+        <button><a href="/{{ this._id }}/item-edit">Edit Item</a></button>
+    
+    {{/each}} 
+    --> 
+      <br>
+
+        <button><a href="/item-new">Upload New Item</a></button>
+
+      <br>
+
+        <button><a href="/index">View All Items</a></button>
 
 {{else}}
 
     <p>Sorry, in order to see the content of this page you have to be signed in!</p>
+
     <button><a href="/">Go Back To The Home Page</a></button>
     <button><a href="/signin">Sign In</a></button>
     <button><a href="/signup">Register</a></button>

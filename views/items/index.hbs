@@ -1,0 +1,17 @@
+<h1>All Items</h1>
+
+   {{#each items}}
+
+        <h3>{{this.item}}</h3>
+
+        <button><a href="/{{ this._id }}">Show details</a></button>
+
+        <form action="/{{ this._id }}/delete" method="POST">
+            <button type="submit">Delete an Item</button>   
+        </form>
+    {{/each}}
+
+    <br>
+    <button><a href="/item-new">Add an Item</a></button>
+    <br>
+
