@@ -8,10 +8,20 @@
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 <body>
-    <nav>
+    <nav id="main-nav" class="main-nav">
       <ul>
         <li>
           <p><a href="/">Home</a></p>
+        </li>
+        <li>
+          <form action="/search" method="GET">
+            <input type="text" name="item" placeholder="Search">
+            <input type="text" name="location" placeholder="City">
+            <input type="text" name="operation" placeholder="How do you want to get it?">
+
+            <button type="submit">SEARCH</button>
+          </form>
+          
         </li>
         <li>
           <a href="/signin">SignIn</a>
@@ -24,8 +34,21 @@
         </li>
       </ul>
     </nav>
-
+  
   {{{body}}}
+
+    <footer>
+      <h4>footer</h4>
+      <ul>
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+        <li>D</li>
+        <li>E</li>
+      </ul>
+    </footer>
+
+  
 
   <script src="/javascripts/script.js"></script>
 </body>

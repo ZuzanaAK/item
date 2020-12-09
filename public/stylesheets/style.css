@@ -1,8 +1,21 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  border: 1px solid gray;
 }
 
 a {
   color: #00B7FF;
+}
+
+.main-nav{
+  border: 1px solid black;
+}
+
+footer{
+  border: 1px solid blue;
+}
+
+.temp-mark {
+  border: 1px solid black;
 }

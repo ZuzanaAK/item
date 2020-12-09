@@ -1,2 +1,21 @@
 <h1>.item</h1>
 <p>Hi! I am the main page! </p>
+
+  <section class="temp-mark">
+    <nav>
+      <h3>Categories</h3>
+      <div>
+        {Here might be the main or most popular categories}
+        {{#each}}
+        <a href="/{{this.name}}">{{this.name}}</a>
+        {{/each}}
+      </div>
+    </nav>
+  </section>
+
+  <section id="most-recent-items">
+    <h3>Recentley published</h3>
+    <div class="recent-items-container">
+
+    </div>
+  </section>
