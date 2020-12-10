@@ -71,6 +71,7 @@ app.use('/', authRoutes);
 
 const searchRoutes = require('./routes/search.routes');
 app.use('/', searchRoutes);
+
 const itemsRoutes = require('./routes/items.routes');
 app.use('/', itemsRoutes);
 
