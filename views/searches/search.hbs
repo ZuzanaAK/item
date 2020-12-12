@@ -1,5 +1,15 @@
 <h1>Search Results</h1>
-<p>{{query.item}} in {{query.location}}</p>
+<p> So you want {{query.item}} in {{query.location}} right? </span>
+<span id ="user-input-address" style="display: none;">{{coordinates}}</span>
+<span id ="google-key" style="display: none;">{{google_key}}</span>
+<span id ="lat" style="display: none;">{{coordinates.lat}}</span>
+<span id ="lng" style="display: none;">{{coordinates.lng}}</span>
+
 <div id="search-results">
-  {TODO: render partials for the products}
+  
+<div id="map">{{map}}</div>
+
+{TODO: render partials for the products}
+<script src="https://maps.googleapis.com/maps/api/js?key={{google_key}}"></script>
+<script src="/javascripts/mapGenerator.js"></script>
 </div>
