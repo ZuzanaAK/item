@@ -7,9 +7,6 @@ let coordinates = {
   lng: Number(document.getElementById('lng').innerHTML),
 }
 
-console.log('coo: ', coordinates);
-
-
 function startMap(coords) {
   const map = new google.maps.Map(
     document.getElementById('map'),
