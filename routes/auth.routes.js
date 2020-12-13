@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 var bcrypt = require('bcryptjs');
 const UserModel = require('../models/User.model')
+const passport = require('passport');
 
 //......................SignUp.....................//
 
@@ -58,35 +59,65 @@ router.get('/signin', (req, res) => {
   res.render('auth/signin')
 })
 
-router.post('/signin', (req, res) => {
-  const {email, password} = req.body
+// router.post(
+//   '/signin',
+//   passport.authenticate('local', {
+//     successRedirect: '/dashboard',
+//     failureRedirect: '/signin'
+//   })
+// );
 
-  UserModel.findOne({email: email})
-    .then((userData) => {
+router.post('/signin', (req, res, next) => {
+
+  passport.authenticate('local', (err, user, failureDetails) => {
+    
+    if(err) {
+      return netx(err);
+    }
+
+    if (!user) {
+      res.render('auth/signin', {message: 'Wrong password or username'});
+      return;
+    }
+
+    req.login(user, err => {
+      if(err) {
+        return next(err);
+      }
+      res.redirect('/dashboard');
+    });
+
+  })(req, res, next);
+});
+
+  
+  // const {email, password} = req.body
+
+  // UserModel.findOne({email: email})
+  //   .then((userData) => {
           
-          if (!userData) {
-            res.status(500).render('auth/signin', {message: 'User does not exist'}) 
-            return;
-          }
+  //         if (!userData) {
+  //           res.status(500).render('auth/signin', {message: 'User does not exist'}) 
+  //           return;
+  //         }
 
-          bcrypt.compare(password, userData.password)
-            .then((result) => {
-                //check if result is true
-                if (result) {
+  //         bcrypt.compare(password, userData.password)
+  //           .then((result) => {
+  //               //check if result is true
+  //               if (result) {
                     
-                    req.session.loggedInUser = userData 
-                    res.redirect('/dashboard')
-                }
-                else {
-                   res.status(500).render('auth/signin', {message: 'Passwords not matching'}) 
-                }
-            })
-            .catch(() => {
-              res.status(500).render('auth/signin', {message: 'Something went wrong. Try again!'}) 
-            })
-    })
-
-})
+  //                   req.session.loggedInUser = userData 
+  //                   res.redirect('/dashboard')
+  //               }
+  //               else {
+  //                  res.status(500).render('auth/signin', {message: 'Passwords not matching'}) 
+  //               }
+  //           })
+  //           .catch(() => {
+  //             res.status(500).render('auth/signin', {message: 'Something went wrong. Try again!'}) 
+  //           })
+  //   })
+// })
 
 
 //...................LogOut...........................//
@@ -100,8 +131,10 @@ router.post('/logout', (req, res) => {
 //...................Dashboard...........................// 
 
 router.get("/dashboard", (req,res,next) => {
-  console.log(req.session.loggedInUser)
-  res.render('users/dashboard', {userInSession: req.session.loggedInUser});
+  console.log('session: ', req.session)
+
+  //TODO: LAUNCH QUERY TO SHOW USER NAME IN RENDERED VIEW
+  res.render('users/dashboard', {userInSession: req.session.passport.user}); //changed from loggedInUser
 })
 
 module.exports = router;
