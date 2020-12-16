@@ -3,17 +3,40 @@
 
 <form action="/{{this._id}}/item-edit" method="post">
  
-  <label for="item"><p>Item:</p></label>
+  <label for="item"><p>Item</p></label>
   <input type="text" name="item" id="item-input" value="{{item}}" />
 <br>
-  <label for="category"><p>Category:</p></label>
-  <input type="text" name="category" id="category-input" value="{{category}}" />
+  <label for="category"><p>Category</p></label>
+  <!-- <input type="text" name="category" id="category-input" value="{{category}}" /> -->
+
+  <select name="category" id="category-input">
+  <option value="Books">Books</option>
+  <option value="Cars">Cars</option>  
+  <option value="Clothes">Clothes</option>
+  <option value="Computers/Laptops">Computers/Laptops</option>
+  <option value="Electronics">Electronics</option>
+  <option value="Furniture">Furniture</option>
+  <option value="Toys">Toys</option>
+  <option value="Tools">Tools</option>
+  <option value="White_Goods">White Goods</option>
+  <option value="Others">Others</option>
+</select>
+  
 <br>
-  <label for="image"><p>Image:</p></label>
-  <input type="image" name="image" id="image-input" value="{{image}}" />
+      <label>
+        <p>Image</p> 
+        <form method="POST" action="/upload" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/png, image/jpg">
+             
+        </form> 
+    </label>
 <br>
-  <label for="description"><p>Description:</p></label>
-  <input type="text" name="description" id="description-input" value="{{description}}" />
+        <p>Description</p> 
+        
+        <textarea id="description" name="description" rows="8" cols="50">
+{{description}}
+        </textarea>
+  
 <br>
   <button type="submit">Save changes</button>
 

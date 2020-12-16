@@ -7,12 +7,13 @@ let ItemSchema = new Schema({
   item: String,
   category: {
     type: String,
+    enum : ['Books','Cars',"Clothes","Computers/Laptops", "Electronics","Furniture","Toys","Tools", "White_Goods","Others"],
     required: [true, "This field is required"],
   }, 
   image: String,
   description: {
     type: String,
-    required: [true, "This field is required"],
+    required: [true, "This field is required here"],
   }, 
   user: {type: Schema.Types.ObjectId, ref: "User"},
 },

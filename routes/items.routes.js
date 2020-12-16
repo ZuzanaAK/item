@@ -46,18 +46,19 @@ router.get("/item-new", (req, res, next) => {
       });
 });
 
-router.post("/item-new", (req,res,next) => {
-  
-  Item.create(req.body)
 
-      .then((itemDB) => {
-        console.log("Your Item Is Successfully Saved In The DB!")
-        res.redirect("/dashboard")
-      })
-      .catch(err => {
-        console.log(`Error: ${err}`)
-      });
-});
+// router.post("/item-new", (req,res,next) => {
+  
+//   Item.create(req.body)
+
+//       .then((itemDB) => {
+//         console.log("Your Item Is Successfully Saved In The DB!")
+//         res.redirect("/dashboard")
+//       })
+//       .catch(err => {
+//         console.log(`Error: ${err}`)
+//       });
+// });
 
 //....................to delete an item..................... 
 

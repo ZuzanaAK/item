@@ -1,26 +1,40 @@
 <h2>Add a New Item</h2>
 
-  <form action="/item-new" method="POST">
+  <form action="/item-new" method="POST" enctype="multipart/form-data">
     
     <label>
         <p>Item</p> 
         <input type="text" name="item">
     </label>
 
-    <label>
-        <p>Category</p>
-        <input type="text" name="category">
-    </label>
+  <label for="category"><p>Category</p></label>
+  <!-- <input type="text" name="category" id="category-input" value="{{category}}" /> -->
+
+  <select name="category" id="category-input">
+  <option value="Books">Books</option>
+  <option value="Cars">Cars</option>  
+  <option value="Clothes">Clothes</option>
+  <option value="Computers/Laptops">Computers/Laptops</option>
+  <option value="Electronics">Electronics</option>
+  <option value="Furniture">Furniture</option>
+  <option value="Toys">Toys</option>
+  <option value="Tools">Tools</option>
+  <option value="White_Goods">White Goods</option>
+  <option value="Others">Others</option>
+</select>
 
     <label>
         <p>Image</p> 
-        <input type="image" name="image">
+        {{!-- <form action="/upload" > --}}
+            <input type="file" name="image" accept="image/png, image/jpg">
+        {{!-- </form> --}}
     </label>
 
-    <label>
-        <p>Description</p> 
-        <input type="text" name="description">
-    </label>
+         <p>Description</p> 
+        
+        <textarea id="description" name="description" rows="8" cols="50">
+{{description}}
+        </textarea>
 
     <br>
 
