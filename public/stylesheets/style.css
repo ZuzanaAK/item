@@ -19,3 +19,9 @@ footer{
 .temp-mark {
   border: 1px solid black;
 }
+
+#map {
+  height: 500px;
+  width: 100%;
+  border: 1px solid red;
+ }
