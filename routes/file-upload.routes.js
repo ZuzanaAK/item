@@ -14,7 +14,7 @@ router.post('/item-new', uploader.single("image"), (req, res, next) => {
  //You will get the image url in 'req.file.path'
  //store that in the DB 
   console.log(req.body)
-  Item.create({ item: req.body.item, category: req.body.category, image: req.file.path, description: req.body.description, user: req.session.loggedInUser })
+  Item.create({ item: req.body.item, category: req.body.category, image: req.file.path, description: req.body.description, user: req.session.passport.user })
 
       .then(() => {
         res.redirect('/dashboard')

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 var bcrypt = require('bcryptjs');
 const UserModel = require('../models/User.model')
+const Item = require('../models/Item.model')
 const passport = require('passport');
 
 //......................SignUp.....................//
@@ -136,5 +137,30 @@ router.get("/dashboard", (req,res,next) => {
   //TODO: LAUNCH QUERY TO SHOW USER NAME IN RENDERED VIEW
   res.render('users/dashboard', {userInSession: req.session.passport.user}); //changed from loggedInUser
 })
+
+//..............................................// 
+
+router.get('/dashboard', ensureAuthenticated, (req, res) => {
+  res.render('dashboard', { user: req.user });
+});
+ 
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    // The user is authenticated
+    // and we have access to the logged user in req.user
+    return next();
+  } else {
+    res.redirect('/signin');
+  }
+}
+
+router.get('/:userId/private-dashboard', ensureAuthenticated, (req, res, next) => {
+  const { _id } = req.user;
+  Item.find({ user: _id })
+    .then((itemsFromDB => res.render('users/private-dashboard', { items: itemsFromDB })))
+    .catch((err) => console.log(err))
+});
+
+
 
 module.exports = router;
