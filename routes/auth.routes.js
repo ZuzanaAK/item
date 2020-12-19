@@ -154,10 +154,25 @@ function ensureAuthenticated(req, res, next) {
   }
 }
 
-router.get('/:userId/private-dashboard', ensureAuthenticated, (req, res, next) => {
+router.get('/:userId/dashboard', ensureAuthenticated, (req, res, next) => {
   const { _id } = req.user;
+
+  let profileOwner = false;
+
+  if ( req.session.passport.user) {
+    userInSession = true;
+  }
+
+  if ( req.session.passport.user === req.params.userId ) {
+    profileOwner = true;
+  }
+  
+
   Item.find({ user: _id })
-    .then((itemsFromDB => res.render('users/private-dashboard', { items: itemsFromDB })))
+    .then((itemsFromDB => 
+  
+        res.render('users/dashboard', { items: itemsFromDB, profileOwner: profileOwner, userInSession: userInSession })))
+
     .catch((err) => console.log(err))
 });
 

@@ -25,3 +25,8 @@ footer{
   width: 100%;
   border: 1px solid red;
  }
+
+ .image {
+   width: 30px;
+   height: 30px;
+ }

@@ -1,12 +1,24 @@
+
 <div>
   <h4>{{this.item}}</h4>
-  <img src="{{this.image}}" alt="{{this.item}}">
+  
+  <div class="image">
+  <img src="{{this.image}}" alt="{{this.item}}" >
+  </div>
+
   <p>op</p>
   <p>City</p>
   
   <button><a href="/{{ this._id }}">Show details</a></button>
-  <form action="/{{ this._id }}/delete" method="POST">
-  <button type="submit">Delete an Item</button>   
+
+  <div>
+    <button><a href="/{{ this._id }}/item-edit">Edit Item</a></button>
+  
+    <form action="/{{ this._id }}/delete" method="POST">
+    <button type="submit">Delete an Item</button>   
+  </div>
+
   </form>
+
 </div>
 
