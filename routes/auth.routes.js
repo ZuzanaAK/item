@@ -4,6 +4,8 @@ var bcrypt = require('bcryptjs');
 const UserModel = require('../models/User.model')
 const Item = require('../models/Item.model')
 const passport = require('passport');
+const nodemailer = require('nodemailer');
+
 
 //......................SignUp.....................//
 
@@ -46,7 +48,8 @@ router.post('/signup', (req, res) => {
               password: hashedPassword
             })
               .then(() => {
-                    res.redirect('/')      
+                    sendVerificationEmail(email);
+                    res.redirect('/verificationMessage')      
               })
 
           })      
@@ -80,6 +83,24 @@ router.post('/signin', (req, res, next) => {
       res.render('auth/signin', {message: 'Wrong password or username'});
       return;
     }
+
+    //this chunk of code IS NOT TESTED
+    //TO BE DONE AFTER DEPLOYMENT
+
+    // User.findOne({user})
+    // .then(userFromDB => {
+    //   if (userFromDB.verified) {
+    //     req.login(user, err => {
+    //       if(err) {
+    //         return next(err);
+    //       }
+    //       res.redirect('/dashboard');
+    //     });
+    //   } else {
+    //     res.redirect('/verificationMessage');
+    //   }
+    // })
+    // .catch(err => console.log(err))
 
     req.login(user, err => {
       if(err) {
@@ -138,6 +159,14 @@ router.get("/dashboard", (req,res,next) => {
   res.render('users/dashboard', {userInSession: req.session.passport.user}); //changed from loggedInUser
 })
 
+
+//...................Verification...........................// 
+
+router.get("/verificationMessage", (req,res,next) => {
+  res.render('auth/verificationMessage');
+})
+
+
 //..............................................// 
 
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
@@ -175,6 +204,32 @@ router.get('/:userId/dashboard', ensureAuthenticated, (req, res, next) => {
 
     .catch((err) => console.log(err))
 });
+
+
+//-----------------------------------------
+//Function to send the verification email
+// ----------------------------------------
+
+function sendVerificationEmail(emailAddress) {
+
+  let transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: 'itemmlradm@gmail.com',
+      pass: process.env.NODEMAILERPASS
+    }
+  })
+
+  transporter.sendMail({
+    from: '"OUR VERY Awesome Project " <itemmlradm@gmail.com>',
+    to: emailAddress,
+    subject: 'test',
+    text: 'test2',
+    html: '<b>great stuff</b>'
+  })
+  .then(info => console.log(info))
+  .catch(err => console.log(err));
+}
 
 
 
