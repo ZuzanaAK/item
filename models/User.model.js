@@ -19,12 +19,19 @@ const userSchema = new Schema(
     verified: {
       type: Boolean,
       default: false
-    }
-
+    },
+    verificationTime: {
+      type: Date
+    },
+    googleID: String,
+    //facebookID: String
   },
   {
     timestamps: true
   }
+  // {
+  //   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
+  // }
 );
 
  module.exports = model('User', userSchema);

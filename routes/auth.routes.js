@@ -106,13 +106,47 @@ router.post('/signin', (req, res, next) => {
       if(err) {
         return next(err);
       }
-      res.redirect('/dashboard');
+      res.redirect('/:id/dashboard');
     });
 
   })(req, res, next);
 });
 
-  
+/////////////////////////////////////////////////////
+//////////     Social login: Google    //////////////
+/////////////////////////////////////////////////////
+
+router.get(
+  '/signin/google',
+   passport.authenticate("google",
+   {
+     scope: [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    })
+    );
+
+router.get(
+  "/signin/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "/googleLoginSuccess",
+    failureRedirect: "/googleLoginFailure"
+  })
+);
+
+
+
+
+router.get("/googleLoginSuccess", (req, res) => {
+  res.send("succesfully logged in with google account")
+});
+
+router.get("/googleLoginFailure", (req, res) => {
+  res.send("ERROR while logging in with google account")
+});
+
+
   // const {email, password} = req.body
 
   // UserModel.findOne({email: email})
@@ -152,7 +186,7 @@ router.post('/logout', (req, res) => {
 
 //...................Dashboard...........................// 
 
-router.get("/dashboard", (req,res,next) => {
+router.get("/dashboard", (req, res, next) => {
   console.log('session: ', req.session)
 
   //TODO: LAUNCH QUERY TO SHOW USER NAME IN RENDERED VIEW
@@ -199,7 +233,6 @@ router.get('/:userId/dashboard', ensureAuthenticated, (req, res, next) => {
 
   Item.find({ user: _id })
     .then((itemsFromDB => 
-  
         res.render('users/dashboard', { items: itemsFromDB, profileOwner: profileOwner, userInSession: userInSession })))
 
     .catch((err) => console.log(err))

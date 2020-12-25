@@ -31,10 +31,19 @@
           <a href="/signin">SignIn</a>
         </li>
         <li>
+          {{#unless user}}
+            <div>
+              <a href="/signin/google">Login With Google</a>
+            </div>
+          {{/unless}}
+        </li>
+        <li>
           <a href="/signup">Register</a>
         </li>
         <li>
-          <a href="/">Logout</a>
+          <form id="logout-form" action="/logout" method="POST">
+             <button>Logout</button>
+          </form>
         </li>
       </ul>
     </nav>
