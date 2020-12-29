@@ -3,12 +3,15 @@ const Item = require('../models/Item.model');
 const router = express.Router();
 
 
-router.get("/index", (req, res, next) => {
+router.get("/myItems", (req, res, next) => {
+  
+  let userId = req.session
+  console.log(userId)
   
   Item.find()
       .then((items) => {
           //console.log(items)
-          res.render("items/index", {items})
+          res.render("items/myItems", {items})
 
       })
       .catch(err => {
@@ -19,8 +22,11 @@ router.get("/index", (req, res, next) => {
 
 router.get("/:itemId", (req, res, next) => {
 
+  
+
     Item.findById(req.params.itemId)
       .then((itemDB) => {
+        console.log(itemDB);
           res.render("items/item-show", {itemDB})
       })
       .catch(err => {
@@ -33,32 +39,8 @@ router.get("/:itemId", (req, res, next) => {
 //....................to add a new item.....................
 
 router.get("/item-new", (req, res, next) => {
-  
-  Item.findById(req.params.itemId)
-      .then((itemsDB) => {
-          console.log(itemsDB)
-          res.render("items/item-new", {itemsDB})
-
-      })
-      .catch(err => {
-          console.log(`Error: ${err}`)
-          next()
-      });
+  res.render("items/item-new");
 });
-
-
-// router.post("/item-new", (req,res,next) => {
-  
-//   Item.create(req.body)
-
-//       .then((itemDB) => {
-//         console.log("Your Item Is Successfully Saved In The DB!")
-//         res.redirect("/dashboard")
-//       })
-//       .catch(err => {
-//         console.log(`Error: ${err}`)
-//       });
-// });
 
 //....................to delete an item..................... 
 
@@ -79,9 +61,10 @@ router.post('/:itemId/delete', (req, res, next) => {
 
 router.get('/:itemId/item-edit', (req, res, next) => {
   
-  Item.findById(req.params.itemId)
 
+  Item.findById(req.params.itemId)
     .then(itemDB => {
+      console.log(itemDB);
       res.render("items/item-edit", itemDB);
     })
     .catch(err => {
@@ -90,17 +73,20 @@ router.get('/:itemId/item-edit', (req, res, next) => {
 });
 
 
-router.post('/:itemId/item-edit', (req, res, next) => {
+// router.post('/:itemId/item-edit', (req, res, next) => {
 
-  Item.findByIdAndUpdate(req.params.itemId, req.body, { new: true })
+//   console.log("params: ", req.params)
+//   console.log("body: ",req.body)
 
-    .then(itemDB => {
-      res.redirect(`/items/${itemDB._id}`);
-    })
-    .catch(err => {
-      console.log(`Error: ${err}`)
-    });
-});
+//   Item.findByIdAndUpdate(req.params.itemId, req.body, { new: true })
+
+//     .then(itemDB => {
+//       res.redirect(`/${itemDB._id}`);
+//     }) 
+//     .catch(err => {
+//       console.log(`Error: ${err}`)
+//     });
+// });
 
 
 module.exports = router;

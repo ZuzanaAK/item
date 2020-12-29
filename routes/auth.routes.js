@@ -48,8 +48,8 @@ router.post('/signup', (req, res) => {
               password: hashedPassword
             })
               .then(() => {
-                    sendVerificationEmail(email);
-                    res.redirect('/verificationMessage')      
+                    sendWelcomeEmail(email);
+                    res.redirect('/welcomeMessage')      
               })
 
           })      
@@ -106,7 +106,7 @@ router.post('/signin', (req, res, next) => {
       if(err) {
         return next(err);
       }
-      res.redirect('/:id/dashboard');
+      res.redirect('/dashboard');
     });
 
   })(req, res, next);
@@ -127,23 +127,29 @@ router.get(
     })
     );
 
-router.get(
-  "/signin/google/callback",
-  passport.authenticate("google", {
-    successRedirect: "/googleLoginSuccess",
-    failureRedirect: "/googleLoginFailure"
-  })
-);
+// router.get('/signin/google',
+//   passport.authenticate('google', { scope: ['profile', 'email'] }));
 
+// router.get(
+//   "/signin/google/callback",
+//   passport.authenticate("google", {
+//     successRedirect: "/googleLoginSuccess",
+//     failureRedirect: "/googleLoginFailure"
+//   })
+// );
 
-
+router.get('/signin/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/googleLoginFailure' }),
+  function(req, res) {
+    res.redirect('/googleLoginSuccess');
+  });
 
 router.get("/googleLoginSuccess", (req, res) => {
   res.send("succesfully logged in with google account")
 });
 
-router.get("/googleLoginFailure", (req, res) => {
-  res.send("ERROR while logging in with google account")
+router.get("/signing/googleFailed", (req, res) => {
+  res.render("googleFailed")
 });
 
 
@@ -178,48 +184,29 @@ router.get("/googleLoginFailure", (req, res) => {
 
 //...................LogOut...........................//
 
-
 router.post('/logout', (req, res) => {
   req.session.destroy();
-  res.redirect('/');
+  res.redirect('/signin'); 
 });
 
 //...................Dashboard...........................// 
 
-router.get("/dashboard", (req, res, next) => {
-  console.log('session: ', req.session)
+// router.get("/dashboard", (req, res, next) => {
+//   console.log('session: ', req.session)
 
-  //TODO: LAUNCH QUERY TO SHOW USER NAME IN RENDERED VIEW
-  res.render('users/dashboard', {userInSession: req.session.passport.user}); //changed from loggedInUser
-})
-
-
-//...................Verification...........................// 
-
-router.get("/verificationMessage", (req,res,next) => {
-  res.render('auth/verificationMessage');
-})
+//   //TODO: LAUNCH QUERY TO SHOW USER NAME IN RENDERED VIEW
+//   res.render('users/dashboard', {userInSession: req.session.passport.user}); //changed from loggedInUser
+// })
 
 
-//..............................................// 
-
-router.get('/dashboard', ensureAuthenticated, (req, res) => {
-  res.render('dashboard', { user: req.user });
-});
+// router.get('/dashboard', ensureAuthenticated, (req, res) => {
+//   res.render('dashboard', { user: req.user });
+// });
  
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    // The user is authenticated
-    // and we have access to the logged user in req.user
-    return next();
-  } else {
-    res.redirect('/signin');
-  }
-}
 
-router.get('/:userId/dashboard', ensureAuthenticated, (req, res, next) => {
+router.get('/dashboard', ensureAuthenticated, (req, res, next) => {
   const { _id } = req.user;
-
+  
   let profileOwner = false;
 
   if ( req.session.passport.user) {
@@ -230,7 +217,6 @@ router.get('/:userId/dashboard', ensureAuthenticated, (req, res, next) => {
     profileOwner = true;
   }
   
-
   Item.find({ user: _id })
     .then((itemsFromDB => 
         res.render('users/dashboard', { items: itemsFromDB, profileOwner: profileOwner, userInSession: userInSession })))
@@ -238,12 +224,34 @@ router.get('/:userId/dashboard', ensureAuthenticated, (req, res, next) => {
     .catch((err) => console.log(err))
 });
 
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    // The user is authenticated
+    // and we have access to the logged user in req.user
+    return next();
+  } else {
+    res.redirect('/signin');
+  }
+}
+
+
+//...................Verification...........................// 
+
+router.get("/welcomeMessage", (req,res,next) => {
+  res.render('auth/welcomeMessage');
+})
+
+
+//..............................................// 
+
+
+
 
 //-----------------------------------------
-//Function to send the verification email
+//Function to send the welcome email
 // ----------------------------------------
 
-function sendVerificationEmail(emailAddress) {
+function sendWelcomeEmail(emailAddress) {
 
   let transporter = nodemailer.createTransport({
     service: 'Gmail',

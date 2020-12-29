@@ -32,11 +32,16 @@
 
          <p>Description</p> 
         
-        <textarea id="description" name="description" rows="8" cols="50">
-{{description}}
-        </textarea>
+        <textarea id="description" name="description" rows="8" cols="50">{{description}}</textarea>
 
     <br>
+
+  <label for="operation"><p>Operation</p></label>
+      <select name="operation" id="operation-input">
+        <option value="Donate">Donate</option>
+        <option value="Sell">Sell</option>  
+        <option value="Exchange">Exchange</option>
+      </select>
 
     <button type="submit">Add</button>
   </form>

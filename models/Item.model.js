@@ -16,6 +16,11 @@ let ItemSchema = new Schema({
     required: [true, "This field is required here"],
   }, 
   user: {type: Schema.Types.ObjectId, ref: "User"},
+  operation: {
+    type: String,
+    enum : ['Donate','Sell','Exchange'],
+    required: [true, "This field is required"],
+  },
 },
 {
   timestamps: true

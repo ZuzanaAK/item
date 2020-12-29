@@ -12,7 +12,8 @@ const path         = require('path');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+//const GoogleStrategy = require('passport-google-oauth20').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 const User = require('./models/User.model.js');
 
@@ -30,6 +31,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+//Mongoose set up
+mongoose.set('useFindAndModify', false);
 
 /*
 app.use(require('node-sass-middleware')({
@@ -97,27 +100,35 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/googleLoginSuccess"
+      callbackURL: "/signin/google/callback"
     },
     (accessToken, refreshToken, profile, done) => {
       // to see the structure of the data in received response:
-      console.log("Google account details:", profile);
+      //console.log("Google account details:", profile);
+
+      console.log(profile._json)
  
-      User.findOne({ googleID: profile.id })
+      User.findOne( { googleID: profile.id } )
         .then(user => {
           if (user) {
             done(null, user);
             return;
           }
  
-          User.create({ googleID: profile.id })
-            .then(newUser => {
-              done(null, newUser);
-            })
-            .catch(err => done(err)); // closes User.create()
-        })
-        .catch(err => done(err)); // closes User.findOne()
+      User.create({ name: profile._json.given_name, email: profile._json.email, googleID: profile.id, verified: true })
+          .then(newUser => {
+            done(null, newUser);
+          })
+          .catch(err => done(err)); // closes User.create()
+       })
+       .catch(err => done(err)); // closes User.findOne()
     }
+    // function(accessToken, refreshToken, profile, done) {
+    //   console.log('woohoo!');
+    //   User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    //     return done(err, user);
+    //   });
+    //  }
   )
 );
 

@@ -1,14 +1,17 @@
 <h2>Edit This Item</h2>
 <h2>{{item}}</h2>
+<span id='category-item' style="display: none;">{{category}}</span>
+<span id='operation-item' style="display: none;">{{operation}}</span>
 
-<form action="/{{this._id}}/item-edit" method="post">
+<form action="/{{_id}}/item-edit" method="post" enctype="multipart/form-data">
  
-  <label for="item"><p>Item</p></label>
-  <input type="text" name="item" id="item-input" value="{{item}}" />
+  <label for="item-input">
+    <p>Item</p>
+    <input type="text" name="item" id="item-input" value="{{item}}" />
+  </label>
 <br>
   <label for="category"><p>Category</p></label>
   <!-- <input type="text" name="category" id="category-input" value="{{category}}" /> -->
-
   <select name="category" id="category-input">
   <option value="Books">Books</option>
   <option value="Cars">Cars</option>  
@@ -23,21 +26,29 @@
 </select>
   
 <br>
-      <label>
+    <label>
         <p>Image</p> 
-        <form method="POST" action="/upload" enctype="multipart/form-data">
-            <input type="file" name="image" accept="image/png, image/jpg">
-             
-        </form> 
+        {{!-- <form action="/upload" > --}}
+            <input type="file" name="image" accept="image/png, image/jpg" value="{{image}}">
+        {{!-- </form> --}}
     </label>
 <br>
         <p>Description</p> 
         
-        <textarea id="description" name="description" rows="8" cols="50">
-{{description}}
-        </textarea>
+      <textarea id="description" name="description" rows="8" cols="50">{{description}}</textarea>
   
 <br>
+
+  <p>Operation</p> 
+
+      <select name="operation" id="operation-input">
+        <option value="Donate">Donate</option>
+        <option value="Sell">Sell</option>  
+        <option value="Exchange">Exchange</option>
+      </select>
+      
   <button type="submit">Save changes</button>
 
 </form>
+
+<script src="/javascripts/dropdownSelector.js"></script>
