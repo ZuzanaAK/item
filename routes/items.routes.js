@@ -19,11 +19,16 @@ router.get("/myItems", (req, res, next) => {
       });
 });
 
+//....................to add a new item.....................
+
+router.get("/item-new", (req, res, next) => {
+  res.render("items/item-new");
+});
+
+
+//....................to show item.....................
 
 router.get("/:itemId", (req, res, next) => {
-
-  
-
     Item.findById(req.params.itemId)
       .then((itemDB) => {
         console.log(itemDB);
@@ -36,11 +41,6 @@ router.get("/:itemId", (req, res, next) => {
 })
 
 
-//....................to add a new item.....................
-
-router.get("/item-new", (req, res, next) => {
-  res.render("items/item-new");
-});
 
 //....................to delete an item..................... 
 

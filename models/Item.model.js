@@ -21,6 +21,10 @@ let ItemSchema = new Schema({
     enum : ['Donate','Sell','Exchange'],
     required: [true, "This field is required"],
   },
+  location: {
+    type: String,
+    required: [true, "This field is required"]
+  }
 },
 {
   timestamps: true

@@ -26,22 +26,40 @@ router.post('/item-new', uploader.single("image"), (req, res, next) => {
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${google_key}`
   axios.get(url)
   .then(response => {
-    console.log(response.data.results)
-   // const formattedAddress = ;
+    //console.log(response.data.results.formatted_address)
+    const formattedAddress = response.data.results[0].formatted_address;
     const coordinates = response.data.results[0].geometry.location;
-    console.log(coordinates);
+    console.log(response.data.results);
+
+    Item.create({ item: req.body.item, 
+      category: req.body.category, 
+      image: req.file.path, 
+      description: req.body.description, 
+      user: req.session.passport.user, 
+      operation: req.body.operation, 
+      location: formattedAddress })
+        .then(() => {
+          res.redirect('/myItems')
+        })
+        .catch(error => console.log(`Error while creating a new item: ${error}`));
   })
   .catch(err => {
     console.log(err);
   });
 
-  Item.create({ item: req.body.item, category: req.body.category, image: req.file.path, description: req.body.description, user: req.session.passport.user, operation: req.body.operation })
+  
 
-      .then(() => {
-        res.redirect('/myItems')
-      })
-      
-      .catch(error => console.log(`Error while creating a new item: ${error}`));
+  // Item.create({ item: req.body.item, 
+  //   category: req.body.category, 
+  //   image: req.file.path, 
+  //   description: req.body.description, 
+  //   user: req.session.passport.user, 
+  //   operation: req.body.operation, 
+  //   location: formattedAddress })
+  //     .then(() => {
+  //       res.redirect('/myItems')
+  //     })
+  //     .catch(error => console.log(`Error while creating a new item: ${error}`));
 });
  
 
