@@ -65,16 +65,33 @@ router.post('/item-new', uploader.single("image"), (req, res, next) => {
 
 router.post('/:itemId/item-edit', uploader.single("image"), (req, res, next) => {
 
-  console.log('file is: ', req.file)
-
-  let newDoc = { item: req.body.item, category: req.body.category, image: req.file.path, description: req.body.description, user: req.session.passport.user, operation: req.body.operation }
-
-  console.log(newDoc);
-
   if (!req.file) {
     next(new Error('No file uploaded!'));
     return;
   }
+
+  const address = req.body.location;
+  console.log("the address is:", address)
+  const google_key = process.env.GOOGLE_MAPS_API_KEY
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${google_key}`
+  axios.get(url)
+  .then(response => {
+    //console.log(response.data.results.formatted_address)
+    const formattedAddress = response.data.results[0].formatted_address;
+    const coordinates = response.data.results[0].geometry.location;
+    console.log(response.data.results);
+
+  let newDoc = { 
+    item: req.body.item, 
+    category: req.body.category, 
+    image: req.file.path, 
+    description: req.body.description, 
+    user: req.session.passport.user, 
+    operation: req.body.operation,
+    location: formattedAddress}
+
+  console.log(newDoc);
+
 
   Item.findOneAndUpdate(
     {_id: req.params.itemId},
@@ -86,8 +103,8 @@ router.post('/:itemId/item-edit', uploader.single("image"), (req, res, next) => 
   })
   .catch(error => console.log(`Error while creating a new item: ${error}`));
 
-  console.log("body is: ", req.body)
-
+})
+  .catch(error => console.log(`Error while creating a new item: ${error}`))
 });
 
 
