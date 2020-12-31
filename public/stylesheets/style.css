@@ -1,3 +1,17 @@
+@media only screen and (max-width:480px) {
+
+  
+
+
+
+
+
+}
+
+
+
+
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -26,7 +40,11 @@ footer{
   border: 1px solid red;
  }
 
+/*
  .image {
    width: 30px;
    height: 30px;
  }
+*/
+
+
