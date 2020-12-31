@@ -24,6 +24,14 @@ let ItemSchema = new Schema({
   location: {
     type: String,
     required: [true, "This field is required"]
+  },
+  lng: {
+    type: String,
+    required: [true, "This field is required"]
+  },
+  lat: {
+    type: String,
+    required: [true, "This field is required"]
   }
 },
 {

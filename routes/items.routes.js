@@ -31,7 +31,7 @@ router.get("/item-new", (req, res, next) => {
 router.get("/:itemId", (req, res, next) => {
     Item.findById(req.params.itemId)
       .then((itemDB) => {
-        console.log(itemDB);
+        //console.log(itemDB);
           res.render("items/item-show", {itemDB})
       })
       .catch(err => {

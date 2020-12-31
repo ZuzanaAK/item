@@ -23,9 +23,24 @@
   {{itemDB.operation}}
 </p>
 
+<p>
+  <strong>Location</strong>
+
+  <span id ="google-key" style="display: none;">{{google_key}}</span>
+  <span id ="lat" style="display: none;">{{itemDB.lat}}</span>
+  <span id ="lng" style="display: none;">{{itemDB.lng}}</span>
+
+  <div id="map">{{map}}</div>
+
+  {{itemDB.location}}
+
+</p>
 
 <br>
 
 <button><a href="{{itemDB._id}}/item-edit">Edit an Item</a></button>
 
 <br>
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{google_key}}"></script>
+<script src="/javascripts/mapGenerator.js"></script>
