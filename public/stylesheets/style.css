@@ -1,36 +1,12 @@
-/*change to 480px for a phone screen*/
-@media only screen and (max-width:500px) {
 
-  html {
-    max-width: 480px;
-  }
-
-  body {
-    background-color: white;
-    max-width: 480px;
-  }
-  
-}
-
-/*
-@media only screen and (min-width:600px) and (max-width:1600px) {
-*/
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  border: 1px solid gray;
 }
 
 a {
-  color: #00B7FF;
-}
-
-.main-nav{
-  border: 1px solid black;
-}
-
-footer{
-  border: 1px solid blue;
+  text-decoration: none;
+  color: white;
 }
 
 .temp-mark {
