@@ -1,38 +1,46 @@
 const express = require('express');
 const Item = require('../models/Item.model');
+const User = require('../models/User.model');
 const router = express.Router();
 
-
-router.get("/myItems", (req, res, next) => {
-  
-  let userId = req.session
-  console.log(userId)
-  
-  Item.find()
-      .then((items) => {
-          //console.log(items)
-          res.render("items/myItems", {items})
-
-      })
-      .catch(err => {
-          console.log(`Error: ${err}`)
-      });
-});
 
 //....................to add a new item.....................
 
 router.get("/item-new", (req, res, next) => {
-  res.render("items/item-new");
+
+  let userInSession = false
+
+  if (req.session.passport) {
+    userInSession = true;
+  }
+
+  res.render("items/item-new", {userInSession});
 });
 
 
 //....................to show item.....................
 
 router.get("/:itemId", (req, res, next) => {
+
+  let profileOwner = false;
+
     Item.findById(req.params.itemId)
       .then((itemDB) => {
-        //console.log(itemDB);
-          res.render("items/item-show", {itemDB})
+        console.log(itemDB);
+        if (req.session.passport) {
+          if (req.session.passport.user == itemDB.user) {
+            profileOwner = true;
+          }
+        }
+
+        User.findById(itemDB.user)
+          .then(userFromDB => {
+            res.render("items/item-show", {profileOwner, itemDB, userFromDB})
+          })
+          .catch(err => {
+            console.log(err)
+          })
+          
       })
       .catch(err => {
         console.log(`Error: ${err}`)
@@ -61,11 +69,16 @@ router.post('/:itemId/delete', (req, res, next) => {
 
 router.get('/:itemId/item-edit', (req, res, next) => {
   
+  let userInSession = false
+
+  if (req.session.passport) {
+    userInSession = true;
+  }
 
   Item.findById(req.params.itemId)
     .then(itemDB => {
       console.log(itemDB);
-      res.render("items/item-edit", itemDB);
+      res.render("items/item-edit", {userInSession, itemDB});
     })
     .catch(err => {
       console.log(`Error: ${err}`)

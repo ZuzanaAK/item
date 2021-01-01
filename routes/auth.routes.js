@@ -139,17 +139,18 @@ router.get(
 // );
 
 router.get('/signin/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/googleLoginFailure' }),
+  passport.authenticate('google', { failureRedirect: '/signin/googleLoginFailure' }),
   function(req, res) {
-    res.redirect('/googleLoginSuccess');
+    res.redirect('/');
   });
 
-router.get("/googleLoginSuccess", (req, res) => {
-  res.send("succesfully logged in with google account")
-});
+// router.get("/googleLoginSuccess", (req, res) => {
+//   //res.send("succesfully logged in with google account")
+//   res.redirect();
+// });
 
-router.get("/signing/googleFailed", (req, res) => {
-  res.render("googleFailed")
+router.get("/signin/googleLoginFailure", (req, res) => {
+  res.render("auth/googleFailure")
 });
 
 
@@ -185,7 +186,9 @@ router.get("/signing/googleFailed", (req, res) => {
 //...................LogOut...........................//
 
 router.post('/logout', (req, res) => {
+  console.log("pre", req.session);
   req.session.destroy();
+  console.log("post", req.session);
   res.redirect('/signin'); 
 });
 
@@ -206,6 +209,8 @@ router.post('/logout', (req, res) => {
 
 router.get('/dashboard', ensureAuthenticated, (req, res, next) => {
   const { _id } = req.user;
+
+  console.log(_id)
   
   let profileOwner = false;
 

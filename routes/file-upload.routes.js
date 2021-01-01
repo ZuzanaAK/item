@@ -34,9 +34,11 @@ router.post('/item-new', uploader.single("image"), (req, res, next) => {
       description: req.body.description, 
       user: req.session.passport.user, 
       operation: req.body.operation, 
-      location: formattedAddress })
+      location: formattedAddress,
+      lat: coordinates.lat,
+      lng: coordinates.lng })
         .then(() => {
-          res.redirect('/myItems')
+          res.redirect('/dashboard')
         })
         .catch(error => console.log(`Error while creating a new item: ${error}`));
   })
@@ -96,7 +98,7 @@ router.post('/:itemId/item-edit', uploader.single("image"), (req, res, next) => 
     newDoc,
     { new: true })
   .then(updatedDocument => {
-    res.redirect('/myItems')
+    res.redirect(`/${updatedDocument._id}`)
   })
   .catch(error => console.log(`Error while editing the item: ${error}`));
 
