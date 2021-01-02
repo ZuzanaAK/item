@@ -37,7 +37,7 @@ router.post('/item-new', uploader.single("image"), (req, res, next) => {
       location: formattedAddress,
       lat: coordinates.lat,
       lng: coordinates.lng })
-        .then(() => {
+        .then((newItem) => {
           res.redirect('/dashboard')
         })
         .catch(error => console.log(`Error while creating a new item: ${error}`));
@@ -63,6 +63,8 @@ router.post('/item-new', uploader.single("image"), (req, res, next) => {
  
 
 router.post('/:itemId/item-edit', uploader.single("image"), (req, res, next) => {
+
+  //console.log("test")
 
   if (!req.file) {
     next(new Error('No file uploaded!'));
@@ -92,16 +94,17 @@ router.post('/:itemId/item-edit', uploader.single("image"), (req, res, next) => 
     lng: coordinates.lng
 }
 
+  console.log("XXX: ", req.params.itemId);
 
   Item.findOneAndUpdate(
     {_id: req.params.itemId},
     newDoc,
     { new: true })
   .then(updatedDocument => {
-    res.redirect(`/${updatedDocument._id}`)
+    let item = updatedDocument._id;
+    res.redirect(`/${item}`);
   })
   .catch(error => console.log(`Error while editing the item: ${error}`));
-
 })
   .catch(error => console.log(`Error while getting the data: ${error}`))
 });

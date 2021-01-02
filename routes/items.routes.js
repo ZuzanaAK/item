@@ -23,11 +23,13 @@ router.get("/item-new", (req, res, next) => {
 router.get("/:itemId", (req, res, next) => {
 
   let profileOwner = false;
+  let userInSession = false;
 
     Item.findById(req.params.itemId)
       .then((itemDB) => {
         console.log(itemDB);
         if (req.session.passport) {
+          userInSession = true;
           if (req.session.passport.user == itemDB.user) {
             profileOwner = true;
           }
@@ -35,7 +37,7 @@ router.get("/:itemId", (req, res, next) => {
 
         User.findById(itemDB.user)
           .then(userFromDB => {
-            res.render("items/item-show", {profileOwner, itemDB, userFromDB})
+            res.render("items/item-show", {userInSession, profileOwner, itemDB, userFromDB})
           })
           .catch(err => {
             console.log(err)

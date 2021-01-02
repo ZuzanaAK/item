@@ -3,13 +3,13 @@
 <span id='category-item' style="display: none;">{{itemDB.category}}</span>
 <span id='operation-item' style="display: none;">{{itemDB.operation}}</span>
 
-<form action="/{{_id}}/item-edit" method="post" enctype="multipart/form-data">
+<form action="/{{itemDB._id}}/item-edit" method="post" enctype="multipart/form-data">
  
   <label for="item-input">
     <p>Item</p>
     <input type="text" name="item" id="item-input" value="{{itemDB.item}}" />
   </label>
-<br>
+  <br>
   <label for="category"><p>Category</p></label>
   <!-- <input type="text" name="category" id="category-input" value="{{category}}" /> -->
   <select name="category" id="category-input">
@@ -26,14 +26,15 @@
 </select>
   
 <br>
-    <label>
-        <p>Image</p> 
-        {{!-- <form action="/upload" > --}}
-            <input type="file" name="image" accept="image/png, image/jpg" value="{{itemDB.image}}">
-        {{!-- </form> --}}
-    </label>
+ <label>
+     <p>Image</p> 
+     {{!-- <form action="/upload" > --}}
+      <input type="file" name="image" accept="image/png, image/jpg">
+     {{!-- </form> --}}
+  </label>
 <br>
-        <p>Description</p> 
+
+      <p>Description</p> 
         
       <textarea id="description" name="description" rows="8" cols="50">{{itemDB.description}}</textarea>
   

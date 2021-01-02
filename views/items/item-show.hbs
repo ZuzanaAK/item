@@ -37,8 +37,16 @@
 </p>
 
 <p>
-  <strong>Contact information</strong>
+  <strong>Contact information: </strong>
+
+{{#if userInSession}}
   {{userFromDB.email}}
+
+{{else}}
+
+<strong>Please <a href="/signin">log in</a> to be able to see the contact information</strong>
+
+{{/if}}
 </p>
 
 <br>
