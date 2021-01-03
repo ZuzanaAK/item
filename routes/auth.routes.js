@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 var bcrypt = require('bcryptjs');
-const UserModel = require('../models/User.model')
+const User = require('../models/User.model')
 const Item = require('../models/Item.model')
 const passport = require('passport');
 const nodemailer = require('nodemailer');
@@ -42,7 +42,7 @@ router.post('/signup', (req, res) => {
         bcrypt.hash(password, salt)
           .then((hashedPassword) => {
 
-            UserModel.create({
+            User.create({
               name,
               email, 
               password: hashedPassword
@@ -239,6 +239,71 @@ function ensureAuthenticated(req, res, next) {
   }
 }
 
+
+router.get('/profile', ensureAuthenticated, (req, res, next) => {
+
+  const { _id } = req.user;
+
+  console.log(_id)
+  
+  let profileOwner = false;
+
+  if ( req.session.passport.user ) {
+    userInSession = true;
+  }
+
+   
+  if ( req.session.passport.user == req.user._id ) {
+    
+    profileOwner = true;
+  }
+  
+  User.findOne({ _id: _id })
+    .then(userFromDB => {
+      console.log(userFromDB);
+      res.render('users/profile', { user: userFromDB, profileOwner: profileOwner, userInSession: userInSession })
+    })
+    .catch((err) => console.log(err))
+});
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    // The user is authenticated
+    // and we have access to the logged user in req.user
+    return next();
+  } else {
+    res.redirect('/signin');
+  }
+}
+
+//.................Profile-Edit............................//
+
+router.get("/profile-edit", ensureAuthenticated, (req,res,next) => {
+
+  const { _id } = req.user;
+
+  console.log(_id)
+  
+  let profileOwner = false;
+
+  if ( req.session.passport.user ) {
+    userInSession = true;
+  }
+
+   
+  if ( req.session.passport.user == req.user._id ) {
+    
+    profileOwner = true;
+  }
+
+  User.findOne({ _id: _id })
+
+  .then(userFromDB => {
+    console.log(userFromDB);
+    res.render('users/profile-edit', {userFromDB: userFromDB, profileOwner: profileOwner, userInSession: userInSession });
+  })
+  .catch((err) => console.log(err))
+});
 
 //...................Verification...........................// 
 

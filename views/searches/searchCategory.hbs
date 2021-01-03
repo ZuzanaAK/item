@@ -1,6 +1,23 @@
 <div>
+
+<div>
+    {{> searchBar}}
+</div>
+
+{{> categoriesPartial}}
+
+{{#if itemsInCategory}}
+
 {{#each itemsInCategory}}
   {{>itemPartialMainPage this}}
 {{/each}}
+
+{{else}}
+
+<p>Sorry, there are no items in this category... Yet!</p>
+
+{{/if}}
+
+
 
 </div>

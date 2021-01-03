@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const Item = require('../models/Item.model');
+const User = require('../models/User.model');
 const mongoose = require('mongoose');
 const axios = require('axios');
 
@@ -108,6 +109,35 @@ router.post('/:itemId/item-edit', uploader.single("image"), (req, res, next) => 
 })
   .catch(error => console.log(`Error while getting the data: ${error}`))
 });
+
+
+router.post('/:userId/profile-edit', uploader.single("profileImage"), (req, res, next) => {
+
+  //console.log("test")
+
+  if (!req.file) {
+    next(new Error('No file uploaded!'));
+    return;
+  }
+
+  let newDoc = { 
+    image: req.file.path, 
+    name: req.body.name, 
+}
+
+console.log(newDoc);
+
+  User.findOneAndUpdate(
+    {_id: req.params.userId},
+    newDoc,
+    {new: true}
+    )
+    .then((updatedDocument) => {
+      console.log(updatedDocument);
+    res.redirect("/profile");
+     })
+  .catch(error => console.log(`Error while editing the user: ${error}`));
+})
 
 
 module.exports = router;

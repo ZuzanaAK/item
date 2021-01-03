@@ -1,0 +1,36 @@
+<p>Here you can edit your profile</p>
+
+
+
+ {{#if profileOwner}}
+
+ <form action="/{{userFromDB._id}}/profile-edit" method="post" enctype="multipart/form-data">
+
+<label for="name-input">
+    <p>Name</p>
+    <input type="text" name="name" id="name-input" value="{{userFromDB.name}}" />
+  </label>
+  <br>
+
+  <label>
+    <p>Image</p> 
+        {{!-- <form action="/upload" > --}}
+    <input type="file" name="profileImage" accept="image/png, image/jpg">
+        {{!-- </form> --}}
+  </label>
+
+     
+  <br> 
+
+  <button type="submit">Save changes</button>
+
+</form>
+
+  
+
+ {{else}}
+
+<p> In order to view this page you need to log in. </p> 
+
+ {{/if}}
+

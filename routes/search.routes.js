@@ -18,7 +18,9 @@ router.get('/search', (req, res, next) => {
         itemsToRetrieve.push(item);
       }
     })
+   
     res.render('searches/search', {itemsToRetrieve});
+
   })
   .catch(err => {
     console.log(err);

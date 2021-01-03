@@ -1,0 +1,14 @@
+<p>Welcome to your profile page</p>
+
+<p>Personal Information</p>
+<img src={{user.profileImage}} alt="user-profile-image">
+<p>Name: {{user.name}}</p>
+<p>Email: {{user.email}}</p>
+
+{{#if profileOwner}}
+
+      <div>
+        <button><a href="/profile-edit">Edit profile</a></button>  
+      </div>
+      
+{{/if}}

@@ -7,7 +7,7 @@ let ItemSchema = new Schema({
   item: String,
   category: {
     type: String,
-    enum : ['Books','Cars',"Clothes","Computers/Laptops", "Electronics","Furniture","Toys","Tools", "White_Goods","Others"],
+    enum : ['Books','Cars',"Clothes","Computers", "Electronics","Furniture","Toys","Tools", "White_Goods","Others"],
     required: [true, "This field is required"],
   }, 
   image: String,

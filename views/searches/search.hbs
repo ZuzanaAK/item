@@ -1,10 +1,20 @@
 <h1>Search Results</h1>
-<p> So you want {{query.item}} in {{query.location}} right? </span>
 
 <div id="search-results">
+
+    <div>
+      {{> searchBar}}
+    </div>
+
+
+{{#if itemsToRetrieve}}
 
 {{#each itemsToRetrieve}}
   {{>itemPartialMainPage this}}
 {{/each}}
 
+{{else}}
+<p>Sorry, there are no items matching your criteria</p>
+
+{{/if}}
 </div>

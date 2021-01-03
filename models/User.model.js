@@ -14,7 +14,7 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      required: true
+      //required: true
     },
     verified: {
       type: Boolean,
@@ -24,6 +24,10 @@ const userSchema = new Schema(
       type: Date
     },
     googleID: String,
+    profileImage: {
+      type: String,
+      default: "https://data.whicdn.com/images/346305623/original.jpg"
+    }
   },
   {
     timestamps: true
