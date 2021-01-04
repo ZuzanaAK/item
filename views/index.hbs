@@ -1,29 +1,18 @@
-<h1>.item</h1>
-<p>Hi! I am the main page! </p>
+<div class="logo-searchbar-containter">
+  <img src="/images/logo.jpeg" class="logo" alt="item-logo">
 
-    <div>
-      {{> searchBar}}
-    </div>
+  <div>
+    {{> searchBar}}
+  </div>
+</div>
 
 {{> categoriesPartial}}
 
-{{!-- <p>CATEGORIES</p>
-<ul>
-  <li>
-    <a href="categories/Books">Books</a>
-  </li>
-</ul> --}}
-  
-
-  <section id="most-recent-items">
-    <h3>Recently published</h3>
-    <div class="recent-items-container">
-      {{#each itemsFromDB}}
-        {{!-- <a href="/{{this.item}}">{{this.item}}</a> --}}
-         {{> itemPartialMainPage this}}
-      {{/each}}
-
-    </div>
-  </section>
-
-<script src="/javascripts/categoriesGenerator.js"></script>
+<section>
+  <h3>Recently published</h3>
+    <div class="partial-container-item-card">
+    {{#each itemsFromDB}}
+       {{> itemPartialMainPage this}}
+    {{/each}}
+     </div>
+</section>

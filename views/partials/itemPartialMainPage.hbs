@@ -1,15 +1,11 @@
-<div>
-  <h4>{{this.item}}</h4>
-  
-  <div class="image">
-  <img src="{{this.image}}" alt="{{this.item}}" >
+<div class="card" style="width: 18rem;">
+  <img src="{{this.image}}" class="card-img-top" alt="{{this.item}}">
+  <div class="card-body">
+    <h5 class="card-title">{{this.item}}</h5>
+    <p class="card-text">Operation: {{this.operation}}</p>
+    <p class="card-text">Location: {{this.location}}</p>
+    <div class="buttons-container-item-card">
+      <a href="/{{ this._id }}" class="btn btn-primary">Details</a>
+    </div>
   </div>
-
-  <p>Operation: {{this.operation}}</p>
-  <p>Location: {{this.location}}</p>
-  
-  <button><a href="/{{ this._id }}">Show details</a></button>
-
-  </form>
-
 </div>

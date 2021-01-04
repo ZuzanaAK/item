@@ -1,61 +1,60 @@
-<h2>Edit This Item</h2>
+<h2>Edit the Item</h2>
+
+
 <h2>{{itemDB.item}}</h2>
 <span id='category-item' style="display: none;">{{itemDB.category}}</span>
 <span id='operation-item' style="display: none;">{{itemDB.operation}}</span>
 
-<form action="/{{itemDB._id}}/item-edit" method="post" enctype="multipart/form-data">
- 
-  <label for="item-input">
-    <p>Item</p>
-    <input type="text" name="item" id="item-input" value="{{itemDB.item}}" />
-  </label>
-  <br>
-  <label for="category"><p>Category</p></label>
-  <!-- <input type="text" name="category" id="category-input" value="{{category}}" /> -->
-  <select name="category" id="category-input">
-  <option value="Books">Books</option>
-  <option value="Cars">Cars</option>  
-  <option value="Clothes">Clothes</option>
-  <option value="Computers">Computers/Laptops</option>
-  <option value="Electronics">Electronics</option>
-  <option value="Furniture">Furniture</option>
-  <option value="Toys">Toys</option>
-  <option value="Tools">Tools</option>
-  <option value="White_Goods">White Goods</option>
-  <option value="Others">Others</option>
-</select>
-  
-<br>
- <label>
-     <p>Image</p> 
-     {{!-- <form action="/upload" > --}}
-      <input type="file" name="image" accept="image/png, image/jpg">
-     {{!-- </form> --}}
-  </label>
-<br>
-
-      <p>Description</p> 
-        
-      <textarea id="description" name="description" rows="8" cols="50">{{itemDB.description}}</textarea>
-  
-<br>
-
-  <p>Operation</p> 
-
-      <select name="operation" id="operation-input">
-        <option value="Donate">Donate</option>
-        <option value="Sell">Sell</option>  
-        <option value="Exchange">Exchange</option>
+  <form action="/{{itemDB._id}}/item-edit" method="post" enctype="multipart/form-data">
+<div class="item-form-container">
+<div class="form-row item-form-container">
+    <div class="form-group col-md-12">
+      <label for="inputCity">Item</label>
+      <input type="text" class="form-control" name="item" placeholder="Item" value="{{itemDB.item}}">
+    </div>
+    <div class="form-group col-md-12">
+      <label for="inputCity">Location</label>
+      <input type="text" class="form-control" name="location" placeholder="Location" value="{{itemDB.location}}">
+    </div>
+    <div class="form-group col-md-12">
+      <label for="inputCity">Description</label>
+      <textarea id="description" class="form-control" name="description" rows="8" cols="50" placeholder="Here goes a super cool description of your item...">{{itemDB.description}}</textarea>
+    </div>
+    <div class="form-group col-md-12">
+      <label for="category-input">Category</label>
+      <select class="form-control" name="category" id="category-input">
+            <option value="Books">Books</option>
+            <option value="Cars">Cars</option>  
+            <option value="Clothes">Clothes</option>
+            <option value="Computers">Computers/Laptops</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Toys">Toys</option>
+            <option value="Tools">Tools</option>
+            <option value="White_Goods">White Goods</option>
+            <option value="Others">Others</option>
       </select>
-
-    <br>
-
-    <input type="text" name="location" placeholder="Location" value="{{itemDB.location}}">
-     
-    <br> 
-
-  <button type="submit">Save changes</button>
-
+    </div>
+    <div class="form-group col-md-12">
+      <label for="category-input">Operation</label>
+      <select class="form-control" name="operation" id="operation-input">
+            <option value="Donate">Donate</option>
+            <option value="Sell">Sell</option>  
+            <option value="Exchange">Exchange</option>
+      </select>
+    </div>
+    <div class="form-group col-md-12">
+      <label>Image</label>
+      <input type="file" class="form-control file-upload-button" name="image" accept="image/png, image/jpg">
+    
+    </div>
+  </div>
+  </div>
+  <div>
+    <button id="submit-button" type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</div>
+</div>
 </form>
 
 <script src="/javascripts/dropdownSelector.js"></script>

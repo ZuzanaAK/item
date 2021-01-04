@@ -1,6 +1,6 @@
 <h2>Add a New Item</h2>
 
-  <form action="/item-new" method="POST" enctype="multipart/form-data">
+  {{!-- <form action="/item-new" method="POST" enctype="multipart/form-data">
     
     <label>
         <p>Item</p> 
@@ -26,9 +26,7 @@
 
     <label>
         <p>Image</p> 
-        {{!-- <form action="/upload" > --}}
-            <input type="file" name="image" accept="image/png, image/jpg">
-        {{!-- </form> --}}
+        <input type="file" name="image" accept="image/png, image/jpg">
     </label>
 
          <p>Description</p> 
@@ -52,4 +50,57 @@
     <button type="submit">Add</button>
 
 
-  </form>
+  </form> --}}
+
+
+  <form action="/item-new" method="POST" enctype="multipart/form-data">
+<div class="item-form-container">
+<div class="form-row item-form-container">
+    <div class="form-group col-md-12">
+      <label for="inputCity">Item</label>
+      <input type="text" class="form-control" name="item" placeholder="Item">
+    </div>
+    <div class="form-group col-md-12">
+      <label for="inputCity">Location</label>
+      <input type="text" class="form-control" name="location" placeholder="Location">
+    </div>
+    <div class="form-group col-md-12">
+      <label for="inputCity">Description</label>
+      <textarea id="description" class="form-control" name="description" rows="8" cols="50" placeholder="Here goes a super cool description of your item...">{{description}}</textarea>
+    </div>
+    <div class="form-group col-md-12">
+      <label for="category-input">Category</label>
+      <select class="form-control" name="category" id="category-input">
+            <option value="Books">Books</option>
+            <option value="Cars">Cars</option>  
+            <option value="Clothes">Clothes</option>
+            <option value="Computers">Computers/Laptops</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Toys">Toys</option>
+            <option value="Tools">Tools</option>
+            <option value="White_Goods">White Goods</option>
+            <option value="Others">Others</option>
+      </select>
+    </div>
+    <div class="form-group col-md-12">
+      <label for="category-input">Operation</label>
+      <select class="form-control" name="operation" id="operation-input">
+            <option value="Donate">Donate</option>
+            <option value="Sell">Sell</option>  
+            <option value="Exchange">Exchange</option>
+      </select>
+    </div>
+    <div class="form-group col-md-12">
+      <label>Image</label>
+      <input type="file" class="form-control file-upload-button" name="image" accept="image/png, image/jpg">
+    
+    </div>
+  </div>
+  </div>
+  <div>
+    <button id="submit-button" type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</div>
+</div>
+</form>

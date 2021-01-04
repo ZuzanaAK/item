@@ -4,15 +4,16 @@
 
   <h2>Your Items</h2>
   
-      {{#each items}}
+      <div class="partial-container-item-card">
+        {{#each items}}
+          {{> itemPartial this}}
+        {{/each}}
+      </div>
+      
 
-         {{> itemPartial this}}
-
-      {{/each}}
-
-      {{#if profileOwner}}
+      {{!-- {{#if profileOwner}}
         <p>hello profOwn</p>
-      {{/if}}
+      {{/if}} --}}
 
 {{else}}
 

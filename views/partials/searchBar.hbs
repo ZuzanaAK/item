@@ -1,14 +1,23 @@
-<div>
-  <p>What do you want?</p>
-    <form action="/search" method="GET">
-        <input type="text" name="item" placeholder="Search">
-        <input type="text" name="location" placeholder="City">
-        <label for="operation"><p>Operation</p></label>
-        <select name="operation" id="operation-input">
+<form>
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputCity">Item</label>
+      <input type="text" class="form-control" name="item" placeholder="Item">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputCity">Location</label>
+      <input type="text" class="form-control" name="location" placeholder="City">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">Operation</label>
+      <select class="form-control" name="operation" id="operation-input">
           <option value="Donate">Donate</option>
           <option value="Sell">Sell</option>  
           <option value="Exchange">Exchange</option>
-        </select>
-        <button type="submit">SEARCH</button>
-    </form>
-</div>
+      </select>
+    </div>
+  </div>
+  </div>
+  <button id="search-button" type="submit" class="btn btn-primary">Search</button>
+</form>
