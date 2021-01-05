@@ -138,8 +138,8 @@ router.get(
 //   })
 // );
 
-router.get('/signin/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/signin/googleLoginFailure' }),
+router.get('/signin/google/callback',
+  passport.authenticate('google', { failureRedirect: '/signin/googleLoginFailure',scope: ['profile', 'email'], prompt: 'select_account' }  ),
   function(req, res) {
     res.redirect('/');
   });
