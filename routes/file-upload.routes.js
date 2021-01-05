@@ -121,7 +121,7 @@ router.post('/:userId/profile-edit', uploader.single("profileImage"), (req, res,
   }
 
   let newDoc = { 
-    image: req.file.path, 
+    profileImage: req.file.path, 
     name: req.body.name, 
 }
 
