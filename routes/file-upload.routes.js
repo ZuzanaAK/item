@@ -67,10 +67,7 @@ router.post('/:itemId/item-edit', uploader.single("image"), (req, res, next) => 
 
   //console.log("test")
 
-  if (!req.file) {
-    next(new Error('No file uploaded!'));
-    return;
-  }
+ 
 
   const address = req.body.location;
   const google_key = process.env.GOOGLE_MAPS_API_KEY
@@ -83,10 +80,12 @@ router.post('/:itemId/item-edit', uploader.single("image"), (req, res, next) => 
 
     console.log(coordinates);
 
+    let imageToUpload = (req.file && req.file.path) ? req.file.path : req.body.existingImage;
+
   let newDoc = { 
     item: req.body.item, 
     category: req.body.category, 
-    image: req.file.path, 
+    image: imageToUpload, 
     description: req.body.description, 
     user: req.session.passport.user, 
     operation: req.body.operation,
