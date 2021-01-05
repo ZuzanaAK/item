@@ -1,8 +1,8 @@
  {{#if userInSession}}
 <div>
-  Hello {{userInSession.name}}, welcome to your dashboard page!
+  <p class="welcomeMess"> Hello {{userInSession.name}}, welcome to your dashboard page!</p>
 
-  <h2>Your Items</h2>
+  <h4>Your Items</h4>
   
       <div class="partial-container-item-card">
         {{#each items}}

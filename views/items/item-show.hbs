@@ -5,7 +5,7 @@
 {{> categoriesPartial}}
 
 
-<h2>{{itemDB.item}}</h2>
+<h4>{{itemDB.item}}</h4>
 
 <p>
   <strong>Category:</strong>
@@ -60,9 +60,9 @@
       {{#if profileOwner}}
 
       <div>
-        <button><a href="/{{ itemDB._id }}/item-edit">Edit Item</a></button>  
+        <button class="btn btn-primary" id="submit-button"><a href="/{{ itemDB._id }}/item-edit">Edit Item</a></button>  
         <form action="/{{ itemDB._id }}/delete" method="POST">
-        <button type="submit">Delete an Item</button>   
+        <button class="btn btn-primary" id="submit-button" type="submit">Delete an Item</button>   
       </div>
       
       {{/if}}

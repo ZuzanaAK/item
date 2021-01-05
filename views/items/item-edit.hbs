@@ -1,11 +1,12 @@
-<h2>Edit the Item</h2>
+<h4 class="itemHeading">Edit the Item</h4>
 
-
-<h2>{{itemDB.item}}</h2>
+<h5 class="itemHeading">{{itemDB.item}}</h5>
 <span id='category-item' style="display: none;">{{itemDB.category}}</span>
 <span id='operation-item' style="display: none;">{{itemDB.operation}}</span>
 
-  <form action="/{{itemDB._id}}/item-edit" method="post" enctype="multipart/form-data">
+<div class="loginForm">
+
+<form action="/{{itemDB._id}}/item-edit" method="post" enctype="multipart/form-data">
 <div class="item-form-container">
 <div class="form-row item-form-container">
     <div class="form-group col-md-12">
@@ -56,5 +57,7 @@
 </div>
 </div>
 </form>
+
+</div>
 
 <script src="/javascripts/dropdownSelector.js"></script>

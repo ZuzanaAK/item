@@ -1,5 +1,5 @@
 <div class="logo-searchbar-containter">
-  <img src="/images/logo.jpeg" class="logo" alt="item-logo">
+ <!-- <img src="/images/logo.jpeg" class="logo" alt="item-logo"> -->
 
   <div>
     {{> searchBar}}
@@ -9,7 +9,7 @@
 {{> categoriesPartial}}
 
 <section>
-  <h3>Recently published</h3>
+  <h4 class="headings">Recently published</h4>
     <div class="partial-container-item-card">
     {{#each itemsFromDB}}
        {{> itemPartialMainPage this}}
