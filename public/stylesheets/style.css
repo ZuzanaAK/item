@@ -6,7 +6,7 @@ body {
 
 a {
   text-decoration: none;
-  color: black;
+  /*color: black;*/
 }
 
 .temp-mark {
@@ -17,6 +17,7 @@ a {
   height: 500px;
   width: 100%;
   border: 1px solid red;
+  margin-bottom: 20px;
  }
 
 .buttons-container-item-card {
@@ -122,6 +123,7 @@ footer {
 
 .card-img-top{
   width: 100px;
+  margin-top: 20px
 }
 
 .cardImageContainer {
@@ -132,8 +134,9 @@ footer {
 }
 
 .card-body{
-  bottom: 0px;
-  /*work on this*/
+  align-self: center;
+  
+
 }
 
 
@@ -141,4 +144,24 @@ footer {
   display: flex;
   justify-content: center;
   margin: 25px;
+}
+
+.changeProfile{
+  margin: 20px;
+}
+
+#profileEditMess{
+  margin-top: 20px;
+}
+
+.hiMess{
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#itemImage{
+  width: 500px;
 }

@@ -46,7 +46,8 @@
     </div>
     <div class="form-group col-md-12">
       <label>Image</label>
-      <img src="{{itemDB.image}}" alt="{{itemDB.item}}"/>
+      <br>
+      <img id="itemImage" src="{{itemDB.image}}" alt="{{itemDB.item}}"/>
       <input type="text" name="existingImage" hidden value="{{itemDB.image}}">
       <input type="file" class="form-control file-upload-button" name="image" accept="image/png, image/jpg">
     

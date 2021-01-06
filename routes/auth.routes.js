@@ -209,8 +209,6 @@ router.post('/logout', (req, res) => {
 
 router.get('/dashboard', ensureAuthenticated, (req, res, next) => {
   const { _id } = req.user;
-
-  console.log(_id)
   
   let profileOwner = false;
 
