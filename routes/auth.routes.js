@@ -338,8 +338,9 @@ function sendWelcomeEmail(emailAddress) {
     `<h2>Welcome to our .item family!</h2>
     <p>Thank you for joining us. Now, you can give a second life to all the things you are not using anymore!</p>
     <p>If you have any questions or feedback, please, contact our admin team.</p>
-    <img width=120px src="https://res.cloudinary.com/dhvc31ofm/image/upload/v1609870538/gbtcnhn1nel7zlwsryx5.png" alt="logo">`
-  
+    <div>
+    <img width="80px" src="https://res.cloudinary.com/dhvc31ofm/image/upload/v1609870538/gbtcnhn1nel7zlwsryx5.png" alt="logo">
+    </div>`
   })
   .then(info => console.log(info))
   .catch(err => console.log(err));

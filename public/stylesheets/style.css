@@ -133,10 +133,9 @@ footer {
   flex-direction: column;
 }
 
-.card-body{
-  align-self: center;
-  
-
+#submit-button1 a{
+  color: white;
+  text-decoration: none;
 }
 
 
@@ -164,4 +163,8 @@ footer {
 
 #itemImage{
   width: 500px;
+}
+
+.card-img-top{
+  margin: 25px
 }

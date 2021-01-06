@@ -1,9 +1,9 @@
 
 
 <div class="card" style="width: 18rem;">
-  <img src="{{itemDB.image}}" alt="{{itemDB.name}}" class="card-img-top">
+  <img src="{{itemDB.image}}" alt="{{itemDB.item}}" class="card-img-top">
   <div class="card-body">
-    <h5 class="card-title">{{itemDB.name}}</h5>
+    <h5 class="card-title">{{itemDB.item}}</h5>
   </div>
 
 
@@ -20,7 +20,7 @@
       {{#if profileOwner}}
 
   <div class="card-body">
-      <button class="btn btn-primary" id="submit-button"><a href="/{{ itemDB._id }}/item-edit">Edit Item</a></button>  
+      <button class="btn btn-primary" id="submit-button1"><a href="/{{ itemDB._id }}/item-edit">Edit Item</a></button>  
         <form action="/{{ itemDB._id }}/delete" method="POST">
       <button class="btn btn-primary" id="submit-button" type="submit">Delete an Item</button>       
   </div>
