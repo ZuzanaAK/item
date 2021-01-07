@@ -1,3 +1,4 @@
+<!--
 <form method="POST" action="/signup">
   <label>Name</label>
   <input type="text" name="name" placeholder="Enter your name" required="required">
@@ -10,6 +11,26 @@
 
   <button type="submit" >Sign Up</button>
 </form>
+-->
+
+<div class="login">
+<form method="POST" action="/signup">
+  <div class="form-group">  
+    <label for="inputAddress">Name</label>
+    <input class="form-control" id="inputAddress" type="text" name="name" placeholder="Enter your name" required="required">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input  name="email" placeholder="Enter your email"  required="required" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else outside this community.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input name="password" placeholder="Enter your Password" required="required" type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <button type="submit" class="btn btn-primary">Sign Up</button>
+</form>
+</div>
 
  {{#if message}}
     <div class="error" >{{message}}</div>

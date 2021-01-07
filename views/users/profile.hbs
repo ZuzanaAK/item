@@ -1,14 +1,18 @@
-<p>Welcome to your profile page</p>
+<h4 class="welcomeMess">Welcome to your profile page</h4>
 
-<p>Personal Information</p>
-<img src={{user.profileImage}} alt="user-profile-image">
-<p>Name: {{user.name}}</p>
-<p>Email: {{user.email}}</p>
+<h6>Personal Information</h6>
 
-{{#if profileOwner}}
-
-      <div>
-        <button><a href="/profile-edit">Edit profile</a></button>  
-      </div>
-      
-{{/if}}
+<div class="profileContainer">
+<div class="card" style="width: 25rem;">
+  <img src={{user.profileImage}} class="card-img-top" alt="user-profile-image">
+  <div class="card-body">
+    <h5 class="card-title">{{user.name}}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Email: {{user.email}}</li>
+  </ul>
+  <div class="card-body">
+    <button type="button" class="btn btn-light"><a href="/profile-edit" class="card-link">Edit profile</a></button>
+  </div>
+</div>
+</div>
