@@ -1,36 +1,33 @@
-<div>
-    {{> searchBar}}
+
+
+<div class="card" style="width: 18rem;">
+  <img src="{{itemDB.image}}" alt="{{itemDB.item}}" class="card-img-top">
+  <div class="card-body">
+    <h5 class="card-title">{{itemDB.item}}</h5>
+  </div>
+
+
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Category: {{itemDB.category}}</li>
+    <li class="list-group-item">Operation: {{itemDB.operation}}</li>
+    <li class="list-group-item">Description: {{itemDB.description}}</li>
+  
+    <li class="list-group-item">
+      Contact information: {{#if userInSession}}{{userFromDB.email}}{{else}}<strong>Please <a href="/signin">log in</a> to be able to see the contact information</strong>{{/if}}</li>
+    <li class="list-group-item">Location: {{itemDB.location}}</li>
+  </ul>
+
+      {{#if profileOwner}}
+
+  <div class="card-body">
+      <button class="btn btn-primary" id="submit-button1"><a href="/{{ itemDB._id }}/item-edit">Edit Item</a></button>  
+        <form action="/{{ itemDB._id }}/delete" method="POST">
+      <button class="btn btn-primary" id="submit-button" type="submit">Delete an Item</button>       
+  </div>
+    {{/if}}
 </div>
 
-{{> categoriesPartial}}
-
-
-<h4>{{itemDB.item}}</h4>
-
-<p>
-  <strong>Category:</strong>
-  {{itemDB.category}}
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <br>  
-  <img src="{{itemDB.image}}" alt="">
-</p>
-
-<p>
-  <strong>Description</strong>
-  {{itemDB.description}}
-</p>
-
-
-<p>
-  <strong>Operation</strong>
-  {{itemDB.operation}}
-</p>
-
-<p>
-  <strong>Location</strong>
+<strong>Location</strong>
 
   <span id ="google-key" style="display: none;">{{google_key}}</span>
   <span id ="lat" style="display: none;">{{itemDB.lat}}</span>
@@ -38,36 +35,6 @@
 
   <div id="map">{{map}}</div>
 
-  {{itemDB.location}}
-
-</p>
-
-<p>
-  <strong>Contact information: </strong>
-
-{{#if userInSession}}
-  {{userFromDB.email}}
-
-{{else}}
-
-<strong>Please <a href="/signin">log in</a> to be able to see the contact information</strong>
-
-{{/if}}
-</p>
-
-<br>
-
-      {{#if profileOwner}}
-
-      <div>
-        <button class="btn btn-primary" id="submit-button"><a href="/{{ itemDB._id }}/item-edit">Edit Item</a></button>  
-        <form action="/{{ itemDB._id }}/delete" method="POST">
-        <button class="btn btn-primary" id="submit-button" type="submit">Delete an Item</button>   
-      </div>
-      
-      {{/if}}
-
-<br>
 
 <script src="https://maps.googleapis.com/maps/api/js?key={{google_key}}"></script>
 <script src="/javascripts/mapGenerator.js"></script>

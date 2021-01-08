@@ -1,12 +1,127 @@
+/*for a phone*/
+
+@media only screen and (max-width: 480px) {
+  
+  .body {
+    display: flex;
+    width: 80%;
+    margin: 15px;
+  }
+ 
+  #content {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  .searchbar-container{
+    display: flex;
+    /*justify-content: center;*/
+    flex-wrap: wrap;
+  }
+
+  #logo {
+    max-width: 40%;
+    align-items: center;
+  }
+
+  .logoContainer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo-searchbar-containter {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  #search-button.btn.btn-primary {
+    display: flex;
+    justify-content: flex-start;
+    margin: 8px 0px 0px 0px;
+  }
+
+  .card {
+    margin: 25px;
+  }
+
+  #categList{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(160, 155, 155);
+    border-radius: 0.5%;
+    margin: 15px;
+  }
+
+  .partial-container-item-card {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+
+    /* justify-content: space-around; */
+  }
+
+  #itemImage {
+    max-width: 90%;
+  }
+}
+
+/*for a tablet*/
+
+@media only screen and (max-width: 768px) and (min-width: 481px) {
+
+  
+  .body {
+    display: flex;
+    width: 80%;
+    margin: 15px;
+  }
+ 
+  #content {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  .searchbar-container{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-searchbar-containter {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .partial-container-item-card {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #itemImage {
+    max-width: 90%;
+  }
+
+}
+
+/*for a pc*/
 
 body {
   padding: 50px;
+  height: 100%;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   text-decoration: none;
-  color: black;
+  /*color: black;*/
 }
 
 .temp-mark {
@@ -17,6 +132,7 @@ a {
   height: 500px;
   width: 100%;
   border: 1px solid red;
+  margin-bottom: 20px;
  }
 
 .buttons-container-item-card {
@@ -39,8 +155,8 @@ a {
   margin: 15px;
 }
 
-.logo {
-  width: 150px;
+#logo {
+  width: 130px;
   margin: 15px 25px 25px 15px;
 }
 
@@ -103,13 +219,29 @@ a {
   margin-bottom: 20px;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 footer {
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   padding-top: 10px;
-  background-color: rgb(209, 0, 77)
+  background-color: rgb(209, 0, 77);
+  bottom: 0;
+  position: absolute;
+  height: 40px;
+  overflow: hidden; 
+  width: 90%;
+  margin-bottom: 15px;
+}
+
+.footerContainer{
+  display: flex;
+  justify-content: center;
 }
 
 .login {
@@ -122,6 +254,7 @@ footer {
 
 .card-img-top{
   width: 100px;
+  margin-top: 20px
 }
 
 .cardImageContainer {
@@ -131,14 +264,38 @@ footer {
   flex-direction: column;
 }
 
-.card-body{
-  bottom: 0px;
-  /*work on this*/
+#submit-button1 a{
+  color: white;
+  text-decoration: none;
 }
-
 
 .profileContainer{
   display: flex;
   justify-content: center;
   margin: 25px;
 }
+
+.changeProfile{
+  margin: 20px;
+}
+
+#profileEditMess{
+  margin-top: 20px;
+}
+
+.hiMess{
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#itemImage{
+  width: 500px;
+}
+
+.card-img-top{
+  margin: 25px
+}
+

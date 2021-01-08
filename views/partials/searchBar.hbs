@@ -1,31 +1,31 @@
 <div class="searchbar-container" >
 
-<div>
-  <img src="/images/logo.jpeg" class="logo" alt="item-logo">
+<div class="logoContainer">
+  <img src="/images/logo.jpeg" id="logo" alt="item-logo">
 </div>
 <div class="logo-searchbar-containter">
-<form action="/search" method="get">
-  <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="inputCity">Item</label>
-      <input type="text" class="form-control" name="item" placeholder="Item">
+  <form action="/search" method="get">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputCity">Item</label>
+        <input type="text" class="form-control" name="item" placeholder="Item">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputCity">Location</label>
+        <input type="text" class="form-control" name="location" placeholder="City">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">Operation</label>
+        <select class="form-control" name="operation" id="operation-input">
+            <option value="Donate">Donate</option>
+            <option value="Sell">Sell</option>  
+            <option value="Exchange">Exchange</option>
+        </select>
+      </div>
     </div>
-    <div class="form-group col-md-4">
-      <label for="inputCity">Location</label>
-      <input type="text" class="form-control" name="location" placeholder="City">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputState">Operation</label>
-      <select class="form-control" name="operation" id="operation-input">
-          <option value="Donate">Donate</option>
-          <option value="Sell">Sell</option>  
-          <option value="Exchange">Exchange</option>
-      </select>
-    </div>
-  </div>
   </div>
   <button id="search-button" type="submit" class="btn btn-primary">Search</button>
-</form>
+  </form>
 </div>
 
 </div>

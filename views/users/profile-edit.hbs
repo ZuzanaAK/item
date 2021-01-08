@@ -1,15 +1,18 @@
-<p>Here you can edit your profile</p>
+
+
+<p id="profileEditMess">Here you can edit your profile</p>
 
 
 
  {{#if profileOwner}}
-
- <form action="/{{userFromDB._id}}/profile-edit" method="post" enctype="multipart/form-data">
-
+<div class="changeProfile">
+<form action="/{{userFromDB._id}}/profile-edit" method="post" enctype="multipart/form-data">
+<div class="form-group">
 <label for="name-input">
     <p>Name</p>
-    <input type="text" name="name" id="name-input" value="{{userFromDB.name}}" />
+    <input class="form-control" type="text" name="name" id="name-input" value="{{userFromDB.name}}" />
   </label>
+</div>
   <br>
 
   <label>
@@ -22,10 +25,10 @@
      
   <br> 
 
-  <button type="submit">Save changes</button>
+  <button class="btn btn-primary" type="submit">Save changes</button>
 
 </form>
-
+</div>
   
 
  {{else}}
@@ -33,4 +36,3 @@
 <p> In order to view this page you need to log in. </p> 
 
  {{/if}}
-

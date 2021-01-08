@@ -1,6 +1,8 @@
  {{#if userInSession}}
 <div>
-  <p class="welcomeMess"> Hello {{userInSession.name}}, welcome to your dashboard page!</p>
+  <h4 class="welcomeMess"> Hello, welcome to your dashboard page!</h4>
+
+  {{#if items}} 
 
   <h4>Your Items</h4>
   
@@ -10,10 +12,9 @@
         {{/each}}
       </div>
       
-
-      {{!-- {{#if profileOwner}}
-        <p>hello profOwn</p>
-      {{/if}} --}}
+  {{else}}
+    <p>You don't have any items yet.</p>
+  {{/if}}     
 
 {{else}}
 
