@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
   if (req.session.passport) {
     userInSession = true;
   }
-  //console.log(userId)
 
   Item.find()
   .then( itemsFromDB => {

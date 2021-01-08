@@ -63,13 +63,6 @@ router.get('/signin', (req, res) => {
   res.render('auth/signin')
 })
 
-// router.post(
-//   '/signin',
-//   passport.authenticate('local', {
-//     successRedirect: '/dashboard',
-//     failureRedirect: '/signin'
-//   })
-// );
 
 router.post('/signin', (req, res, next) => {
 
@@ -84,23 +77,7 @@ router.post('/signin', (req, res, next) => {
       return;
     }
 
-    //this chunk of code IS NOT TESTED
-    //TO BE DONE AFTER DEPLOYMENT
-
-    // User.findOne({user})
-    // .then(userFromDB => {
-    //   if (userFromDB.verified) {
-    //     req.login(user, err => {
-    //       if(err) {
-    //         return next(err);
-    //       }
-    //       res.redirect('/dashboard');
-    //     });
-    //   } else {
-    //     res.redirect('/verificationMessage');
-    //   }
-    // })
-    // .catch(err => console.log(err))
+    
 
     req.login(user, err => {
       if(err) {
@@ -127,16 +104,6 @@ router.get(
     })
     );
 
-// router.get('/signin/google',
-//   passport.authenticate('google', { scope: ['profile', 'email'] }));
-
-// router.get(
-//   "/signin/google/callback",
-//   passport.authenticate("google", {
-//     successRedirect: "/googleLoginSuccess",
-//     failureRedirect: "/googleLoginFailure"
-//   })
-// );
 
 router.get('/signin/google/callback',
   passport.authenticate('google', { failureRedirect: '/signin/googleLoginFailure',scope: ['profile', 'email'], prompt: 'select_account' }  ),
@@ -144,43 +111,12 @@ router.get('/signin/google/callback',
     res.redirect('/');
   });
 
-// router.get("/googleLoginSuccess", (req, res) => {
-//   //res.send("succesfully logged in with google account")
-//   res.redirect();
-// });
+
 
 router.get("/signin/googleLoginFailure", (req, res) => {
   res.render("auth/googleFailure")
 });
 
-
-  // const {email, password} = req.body
-
-  // UserModel.findOne({email: email})
-  //   .then((userData) => {
-          
-  //         if (!userData) {
-  //           res.status(500).render('auth/signin', {message: 'User does not exist'}) 
-  //           return;
-  //         }
-
-  //         bcrypt.compare(password, userData.password)
-  //           .then((result) => {
-  //               //check if result is true
-  //               if (result) {
-                    
-  //                   req.session.loggedInUser = userData 
-  //                   res.redirect('/dashboard')
-  //               }
-  //               else {
-  //                  res.status(500).render('auth/signin', {message: 'Passwords not matching'}) 
-  //               }
-  //           })
-  //           .catch(() => {
-  //             res.status(500).render('auth/signin', {message: 'Something went wrong. Try again!'}) 
-  //           })
-  //   })
-// })
 
 
 //...................LogOut...........................//
@@ -194,18 +130,6 @@ router.post('/logout', (req, res) => {
 
 //...................Dashboard...........................// 
 
-// router.get("/dashboard", (req, res, next) => {
-//   console.log('session: ', req.session)
-
-//   //TODO: LAUNCH QUERY TO SHOW USER NAME IN RENDERED VIEW
-//   res.render('users/dashboard', {userInSession: req.session.passport.user}); //changed from loggedInUser
-// })
-
-
-// router.get('/dashboard', ensureAuthenticated, (req, res) => {
-//   res.render('dashboard', { user: req.user });
-// });
- 
 
 router.get('/dashboard', ensureAuthenticated, (req, res, next) => {
   const { _id } = req.user;

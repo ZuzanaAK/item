@@ -87,21 +87,4 @@ router.get('/:itemId/item-edit', (req, res, next) => {
     });
 });
 
-
-// router.post('/:itemId/item-edit', (req, res, next) => {
-
-//   console.log("params: ", req.params)
-//   console.log("body: ",req.body)
-
-//   Item.findByIdAndUpdate(req.params.itemId, req.body, { new: true })
-
-//     .then(itemDB => {
-//       res.redirect(`/${itemDB._id}`);
-//     }) 
-//     .catch(err => {
-//       console.log(`Error: ${err}`)
-//     });
-// });
-
-
 module.exports = router;

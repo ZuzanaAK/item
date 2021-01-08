@@ -1,5 +1,4 @@
 const google_key = document.getElementById('google-key').innerHTML;
-//const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${google_key}`;
 
 let coordinates = {
   lat: Number(document.getElementById('lat').innerHTML),

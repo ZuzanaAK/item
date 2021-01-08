@@ -12,7 +12,6 @@ const path         = require('path');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-//const GoogleStrategy = require('passport-google-oauth20').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 const User = require('./models/User.model.js');
@@ -33,14 +32,7 @@ app.use(cookieParser());
 
 //Mongoose set up
 mongoose.set('useFindAndModify', false);
-
-/*
-app.use(require('node-sass-middleware')({
-  src:  path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  sourceMap: true
-}));
-*/     
+  
 
 // Express View engine setup
 
@@ -56,9 +48,6 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
  
 
-
-
-
 passport.serializeUser((user, cb) => cb(null, user._id));
 
 passport.deserializeUser((id, cb) => {
@@ -70,7 +59,7 @@ passport.deserializeUser((id, cb) => {
 
 passport.use(
   new LocalStrategy(
-    // { passReqToCallback: true },
+    
     {
       usernameField: 'email',
       passwordField: 'password'
@@ -104,7 +93,6 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
       // to see the structure of the data in received response:
-      //console.log("Google account details:", profile);
 
       console.log(profile._json)
  
@@ -123,12 +111,7 @@ passport.use(
        })
        .catch(err => done(err)); // closes User.findOne()
     }
-    // function(accessToken, refreshToken, profile, done) {
-    //   console.log('woohoo!');
-    //   User.findOrCreate({ googleId: profile.id }, function (err, user) {
-    //     return done(err, user);
-    //   });
-    //  }
+    
   )
 );
 
