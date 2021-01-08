@@ -4,6 +4,20 @@ const router = express.Router();
 
 //const axios = require('axios');
 
+router.get('/categories/:category', (req, res, next) => {
+  
+  let inputCategory = req.params.category.charAt(0).toUpperCase() + req.params.category.slice(1)
+
+  Item.find({category: inputCategory})
+  .then(itemsInCategory => {
+    res.render('searches/searchCategory', {itemsInCategory});
+  })
+  .catch(err => {
+    console.log(err)
+  });
+
+})
+
 router.get('/search', (req, res, next) => {
   const inputLocation = req.query.location.toLowerCase()
   const inputItem = req.query.item.toLowerCase()
@@ -43,19 +57,6 @@ router.get('/search', (req, res, next) => {
 //res.render('searches/search', {query, });
 
 //Search for a specific category
-
-router.get('/categories/:category', (req, res, next) => {
-  
-  let inputCategory = req.params.category.charAt(0).toUpperCase() + req.params.category.slice(1)
-
-  Item.find({category: inputCategory})
-  .then(itemsInCategory => {
-    res.render('searches/searchCategory', {itemsInCategory});
-  })
-  .catch(err => {
-    console.log(err)
-  });
-
-}) 
+ 
 
 module.exports = router;
