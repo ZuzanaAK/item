@@ -44,7 +44,7 @@
   }
 
   .card {
-    margin: 25px;
+    margin: auto;
   }
 
   #categList{
@@ -52,7 +52,7 @@
     justify-content: center;
     background-color: rgb(160, 155, 155);
     border-radius: 0.5%;
-    margin: 15px;
+    
   }
 
   .partial-container-item-card {
@@ -60,13 +60,24 @@
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
-
-    /* justify-content: space-around; */
   }
 
   #itemImage {
     max-width: 90%;
   }
+
+  .cardImageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+  }
+
+  .card {
+    max-width: 80%;
+  }
+
 }
 
 /*for a tablet*/
