@@ -32,7 +32,7 @@ router.post('/signup', (req, res) => {
 
     let passwordReg = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/)
     if (!passwordReg.test(password)) {
-      res.status(500).render('auth/signup', {message: 'Password must have one lowercase, one uppercase, a number, a special character and must be atleast 8 digits long'})
+      res.status(500).render('auth/signup', {message: 'Password must have one lowercase, one uppercase, a number, a special character and must be at least 8 digits long'})
       return;
     }
 
