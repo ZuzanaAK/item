@@ -78,6 +78,17 @@
     max-width: 80%;
   }
 
+  .buttons-container-item-card {
+    display:flex;
+    flex-direction: column;
+    width: 49%;
+   
+    justify-content: flex-start;
+  }
+
+  .btn {
+    margin: 2px;
+  }
 }
 
 /*for a tablet*/
