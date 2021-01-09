@@ -159,7 +159,6 @@ a {
 .partial-container-item-card {
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-around; */
 }
 
 .card {
@@ -310,3 +309,15 @@ footer {
   margin: 25px
 }
 
+#imageMainDiv {
+  height: 230px;
+  display: flex;
+  align-items: center;
+}
+
+#imagePartialDiv {
+  height: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
