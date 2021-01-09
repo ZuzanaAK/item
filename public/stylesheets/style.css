@@ -81,13 +81,14 @@
   .buttons-container-item-card {
     display:flex;
     flex-direction: column;
-    width: 49%;
-   
+    width: 100%;
     justify-content: flex-start;
   }
 
   .btn {
     margin: 2px;
+    /*max-width: 40%;*/
+    width: 80px;
   }
 }
 
