@@ -12,11 +12,12 @@ This app serves as a platform where people can sell, exchange or give away their
 * sign up, sign in
 * categorize the items (furniture, books, toys, electronic items, …)
 * use Cloudinary
+* google maps to specify pick up point for the items 
 
 ## Backlog
 
 * real time chat
-* google maps to specify pick up point for the items 
+
 
 ## Heroku 
 https://dot-item.herokuapp.com
