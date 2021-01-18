@@ -18,3 +18,6 @@ This app serves as a platform where people can sell, exchange or give away their
 * real time chat
 * google maps to specify pick up point for the items 
 
+## Heroku 
+https://dot-item.herokuapp.com
+
