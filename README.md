@@ -1,6 +1,8 @@
 # item
 Ironhack project 2
 
+## currectly disconnected from the Google Maps API
+
 ## Description 
 This is a web application created by using Node.js, Express.js, MongoDB and Handlebars.
 
